@@ -41,24 +41,61 @@ def FNC_Xy_portland( N ):
 
     return X, y, df1, df2
 
-#b = FNC_insert_N_Features( df1, 3 )
-N = 4
-X, y, df1, df2 = FNC_Xy_portland( N )
 
-reg = LinearRegression()
+def FNC_runTotal( N ):
+    N = 4
+    X, y, df1, df2 = FNC_Xy_portland( N )
 
-reg.fit(X, y)
-y_pred = reg.predict(X)
+    reg = LinearRegression()
 
-mean_squared_error( y_pred, y )
+    reg.fit(X, y)
+    y_pred = reg.predict(X)
 
-x_proxMes = df1.iloc[-N:,0].values
-x_proxMes = np.array( x_proxMes ).reshape( 1, -1 )
+    rmse1 = mean_squared_error( y_pred, y, squared=False )
 
-y_proxMes = reg.predict( x_proxMes )
-a = reg.predict( np.array([1425, 1419, 1432, 1394]).reshape(1, -1) )
+    x_proxMes = df1.iloc[-N:,0].values
+    x_proxMes = np.array( x_proxMes ).reshape( 1, -1 )
 
-plt.figure(101)
-plt.plot( y, label='y' )
-plt.plot( y_pred, label='y_pred' )
-plt.legend()
+    y_proxMes = reg.predict( x_proxMes )
+    a = reg.predict( np.array([1425, 1419, 1432, 1394]).reshape(1, -1) )
+
+    print("RMSE: ", rmse1.round(2))
+
+    plt.figure(101)
+    plt.plot( y, label='y' )
+    plt.plot( y.index, y_pred, label='y_pred' )
+    plt.legend()
+    plt.show()
+
+    print("FIM!")
+
+    return y, y_pred
+
+
+
+
+#N = 4
+#X, y, df1, df2 = FNC_Xy_portland( N )
+
+#reg = LinearRegression()
+
+#reg.fit(X, y)
+#y_pred = reg.predict(X)
+
+#mean_squared_error( y_pred, y )
+
+#x_proxMes = df1.iloc[-N:,0].values
+#x_proxMes = np.array( x_proxMes ).reshape( 1, -1 )
+
+#y_proxMes = reg.predict( x_proxMes )
+#a = reg.predict( np.array([1425, 1419, 1432, 1394]).reshape(1, -1) )
+
+#print("FOI!")
+
+#plt.figure(101)
+#plt.plot( y, label='y' )
+#plt.plot( y.index, y_pred, label='y_pred' )
+#plt.legend()
+#plt.show()
+
+#print("FOI2!")
