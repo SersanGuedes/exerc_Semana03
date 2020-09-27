@@ -1,6 +1,7 @@
-#import pandas as pd
-#import numpy as np
-#import matplotlib.pyplot as plt
+import source.aux1 as saux1
 
+print("///--- EXERCÍCIO 1 ---///")
+y_test, y_pred = saux1.FNC_runTotal( 4 )
 
-a = 44
+print("///--- EXERCÍCIO 2 ---///")
+saux1.FNC_mnist()
