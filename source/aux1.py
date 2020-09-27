@@ -7,11 +7,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import mean_squared_error
 
-#a = pd.DataFrame([7,5,3,6,2,4])
-
-#path_file = r"C:\Users\sersan.guedes\Desktop\exerc_Semana03\data\portland-oregon.csv"
-#df1 = pd.read_csv(path_file, index_col='Month', parse_dates=['Month'])
-
 
 def FNC_insert_N_Features( df, N ):
     v_cols = df.columns
@@ -61,8 +56,11 @@ def FNC_runTotal( N ):
 
     print("RMSE: ", rmse1.round(2))
 
+    print("Previsão de nº de pessoas em 1969-06 (gab. é 1327): ", a)
+    print("Previsão de nº de pessoas em 1969-07: ", y_proxMes)
+
     plt.figure(101)
-    plt.plot( y, label='y' )
+    plt.plot( y.index, y, label='y' )
     plt.plot( y.index, y_pred, label='y_pred' )
     plt.legend()
     plt.show()
